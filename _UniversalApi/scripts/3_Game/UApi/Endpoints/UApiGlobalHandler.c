@@ -133,7 +133,7 @@ class UApiGlobalHandlerBase extends Managed {
 		}
 	*/
 	int LoadJson(Class cbInstance, string cbFunction, string defaultJson = "{}") {
-		return UApi().globals().Load(Mod, cbInstance, cbFunction, defaultJson));
+		return UApi().globals().Load(Mod, cbInstance, cbFunction, defaultJson);
 	}
 	
 	int Increment(string element, float value = 1){

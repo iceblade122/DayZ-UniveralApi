@@ -156,8 +156,9 @@ class UApiDBHandlerBase extends Managed {
 			}
 		}
 	*/
-	int LoadJson(string oid, Class cbInstance, string cbFunction, string defaultJson = "{}") {
-		return UApi().db(Database).Load(Mod, oid, cbInstance, cbFunction, defaultJson));
+	int LoadJson(string oid, Class cbInstance, string cbFunction, string defaultJson = "{}") 
+	{
+		return UApi().db(Database).Load(Mod, oid, cbInstance, cbFunction, defaultJson);
 	}
 	
 	int Increment(string oid, string element, float value = 1){
