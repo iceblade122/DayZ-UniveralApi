@@ -5,15 +5,18 @@ class UApiTransactionCallBack : RestCallback
 	float Value;
 	string Element;
 	
-	override void OnError(int errorCode) {
+	override void OnError(int errorCode) 
+	{
 	
-	};
+	}
 	
-	override void OnTimeout() {
+	override void OnTimeout() 
+	{
 	
-	};
+	}
 	
-	override void OnSuccess(string data, int dataSize) {
+	override void OnSuccess(string data, int dataSize) 
+	{
 	
-	};
-};
+	}
+}

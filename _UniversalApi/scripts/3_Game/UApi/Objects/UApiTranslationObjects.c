@@ -1,35 +1,39 @@
-class UApiTranslationResponse extends StatusObject {
-
-	autoptr array<autoptr UApiTranslation> Translations;
+class UApiTranslationResponse extends StatusObject 
+{
+	ref array<ref UApiTranslation> Translations;
 	string Detected = "";
 }
 
-class UApiTranslation extends Managed {
+class UApiTranslation extends Managed 
+{
 	string text;
 	string to;
 }
 
-class UApiTranslationRequest extends UApiObject_Base{
-
+class UApiTranslationRequest extends UApiObject_Base
+{
 	string Text = "";
-	autoptr TStringArray To = {"en"};
+	ref TStringArray To = {"en"};
 	string From = "";
 
-
-	
-	void UApiTranslationRequest(string text, TStringArray to, string from = "auto"){
+	void UApiTranslationRequest(string text, TStringArray to, string from = "auto")
+    {
 		Text = text;
-		if (to){
+		if (to)
+        {
 			To = to;
 		}
+
 		From = from;
 	}
 	
-	override string ToJson(){
-		string jsonString = JsonFileLoader<UApiTranslationRequest>.JsonMakeData(this);
+	override string ToJson()
+    {
+		string jsonString = JsonFileLoader<ref UApiTranslationRequest>.JsonMakeData(this);
 		return jsonString;
 	}
 }
+
 /*  *** Default Supported Languages ***
     +-----------------------+----------+
     | Language              | Code     |

@@ -6,23 +6,26 @@ but at the end of the day this is just a template to help modders newer to API s
 to start from
 
 */
-class UApiConfigBase : RestCallback {
+
+class UApiConfigBase : RestCallback 
+{
 	protected bool m_DataReceived = false;
-	
-	
-	void Load(){
+
+	void Load() 
+	{
 		m_DataReceived = false;
-		SetDefaults();//Set the Defaults so that way, when you load if this its the server Requesting the data it will create it based on the defaults
+		SetDefaults(); // Set the Defaults so that way, when you load if this its the server Requesting the data it will create it based on the defaults
 		
 		/*
 		Global Configs
 		UApi().Rest().GlobalsLoad("MODNAME", this, this.ToJson());
 		*/
 	}
-	
-	void Load( string ID){
+
+	void Load(string ID) 
+	{
 		m_DataReceived = false;
-		SetDefaults();//Set the Defaults so that way, when you load if this its the server Requesting the data it will create it based on the defaults
+		SetDefaults(); // Set the Defaults so that way, when you load if this its the server Requesting the data it will create it based on the defaults
 		
 		/*
 		Player Configs
@@ -32,12 +35,11 @@ class UApiConfigBase : RestCallback {
 		UApi().Rest().ItemLoad("MODNAME", ID, this, this.ToJson());
 		*/
 	}
-	
 
-	
-	void Save(){
+	void Save() 
+	{
 		/* 
-		if (GetGame().IsServer()){	//By Default the API is configure to only allow save operations from the server AUTH
+		if (GetGame().IsDedicatedServer()) { // By Default the API is configured to only allow save operations from the server AUTH
 		
 			Global Configs
 			UApi().Rest().GlobalsSave("MODNAME", this.ToJson());
@@ -51,64 +53,70 @@ class UApiConfigBase : RestCallback {
 		}
 		*/
 	}
-	
-	void SetDefaults(){
+
+	void SetDefaults() 
+	{
 		/*
 	
 		  This is to set the defaults for the mod before requesting a load so that way 
-		if it doesn't exsit the API will create the file
+		if it doesn't exist the API will create the file
 	
 		*/
 	}
-	
-	string ToJson(){
+
+	string ToJson() 
+	{
 		// Override and Replace with your class Name
 		string jsonString = UApiJSONHandler<UApiConfigBase>.ToString(this);
 		Print("[UAPI] Error You didn't override ToJson: " + jsonString); 
 		return jsonString;
 	}
-	
-	
-	
-	
-	void SetDataReceived(bool dataReceived = true){
+
+	void SetDataReceived(bool dataReceived = true) 
+	{
 		m_DataReceived = dataReceived;
 	}
-	
-	bool DataReceived(){
+
+	bool DataReceived() 
+	{
 		return m_DataReceived;
 	}
-	
-	void OnDataReceive(){
+
+	void OnDataReceive() 
+	{
 		SetDataReceived();
+
 		/*
-		if(ModVersion != CurrentVersion){
+		if (ModVersion != CurrentVersion) {
 			DoSome Code Upgrade
 		
-			Save(); //Resave the upgrade Version Back to the server
+			Save(); // Resave the upgrade Version Back to the server
 		}
 		*/
 	}
-	
-	
-	// This is called by the API System on the successfull response from the API
-	override void OnSuccess(string data, int dataSize) {
+
+	// This is called by the API System on the successful response from the API
+	override void OnSuccess(string data, int dataSize) 
+	{
 		JsonFileLoader<UApiConfigBase>.JsonLoadData(data, this);
-		if (this){
+		if (this) 
+		{
 			OnDataReceive();
-		} else {
+		} 
+		else 
+		{
 			Print("[UAPI] CallBack Failed errorCode: Invalid Data");
 		}
-	};
-	
-	
-		
+	}
+
 	// This Are Called by the API System on errors from the API System
-	override void OnError(int errorCode) {
+	override void OnError(int errorCode) 
+	{
 		Print("[UAPI] CallBack Failed errorCode: " + UApi().ErrorToString(errorCode));		
-	};
-	
-	override void OnTimeout() {
+	}
+
+	override void OnTimeout() 
+	{
 		Print("[UAPI] CallBack Failed errorCode: Timeout");
-	};
+	}
 }

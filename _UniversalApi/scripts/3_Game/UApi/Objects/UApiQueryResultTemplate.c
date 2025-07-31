@@ -1,23 +1,26 @@
-class UApiQueryResult<Class T> : StatusObject {
-	
-	autoptr array<autoptr T> Results;
+class UApiQueryResult<Class T> : StatusObject 
+{
+	ref array<ref T> Results;
 	int Count;
 	
-	
-	static UApiQueryResult<T> CreateFrom(string  stringData){
+	static UApiQueryResult<T> CreateFrom(string stringData) 
+	{
 		UApiQueryResult<T> returnval;
-		if (UApiJSONHandler<UApiQueryResult<T>>.FromString( stringData, returnval)){
+		if (UApiJSONHandler<ref UApiQueryResult<T>>.FromString(stringData, returnval)) 
+		{
 			return returnval;
 		} 
 		Error("[UAPI] Failed to create Query Results");
 		return NULL;
 	}
 	
-	bool FromJson(string stringData) {
-		return UApiJSONHandler<UApiQueryResult<T>>.FromString( stringData, this);
+	bool FromJson(string stringData) 
+	{
+		return UApiJSONHandler<ref UApiQueryResult<T>>.FromString(stringData, this);
 	}
 
-	array<autoptr T> GetResults(){
+	array<ref T> GetResults() 
+	{
 		return Results;
 	}
 }

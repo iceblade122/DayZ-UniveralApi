@@ -28,7 +28,8 @@ static const int PLAYER_DB = 100;
 static const int OBJECT_DB = 101;
 
 
-class UpdateOpts {
+class UpdateOpts 
+{
 	static string SET = "set"; // `set` to set the value of an element
 	static string PULL = "pull"; // `pull` to pull a value out of an array
 	static string PUSH = "push"; // `push` to push a value into an array
@@ -38,9 +39,8 @@ class UpdateOpts {
 	static string PULLALL = "pullAll";// `pullAll` to empty an array
 }
 
-
-class DSPerms {
-	
+class DSPerms 
+{
 	static string ADD_REACTIONS = "ADD_REACTIONS"; // (add new reactions to messages)
 	static string VIEW_AUDIT_LOG = "VIEW_AUDIT_LOG";
 	static string PRIORITY_SPEAKER = "PRIORITY_SPEAKER";
@@ -58,7 +58,6 @@ class DSPerms {
 	static string USE_VAD = "USE_VAD"; // (use voice activity detection)
 	static string SPEAK = "SPEAK"; // (speak in a voice channel)
 	static string CREATE_INSTANT_INVITE = "CREATE_INSTANT_INVITE"; // (create invitations to the guild)
-	
 	
 	//Since there is no functions to manage the discord these permission are kinda usless but keeping them encase something changes in the future
 	static string ADMINISTRATOR = "ADMINISTRATOR";// (implicitly has all permissions, and bypasses all channel overwrites)

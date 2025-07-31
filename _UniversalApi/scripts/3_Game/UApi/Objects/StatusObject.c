@@ -1,24 +1,25 @@
-class StatusObject extends Managed {
-	
-    string Status =  "Pending"; //Success or Error
-	string Error =  "Not an Error Object";
-	
+class StatusObject extends Managed 
+{
+	string Status = "Pending"; // Success or Error
+	string Error = "Not an Error Object";
 }
 
-
-class UApiStatus extends StatusObject {
+class UApiStatus extends StatusObject 
+{
+	string Version = "0.0.0";
+	string Discord = "Disabled";
+	string Translate = "Disabled";
+	ref TStringArray Wit;
+	ref TStringArray QnA;
+	ref TStringArray LUIS;
 	
-    string Version =  "0.0.0";
-	string Discord =  "Disabled";
-	string Translate =  "Disabled";
-	autoptr TStringArray Wit;
-	autoptr TStringArray QnA;
-	autoptr TStringArray LUIS;
-	
-	int CheckVersion(string version){
-		if (version == Version){
+	int CheckVersion(string version) 
+	{
+		if (version == Version) 
+		{
 			return 0;
 		}
+
 		TStringArray ModVerMap = {};
 		TStringArray ApiVerMap = {};
 		version.Split(".", ModVerMap);
@@ -29,25 +30,37 @@ class UApiStatus extends StatusObject {
 		int ApiMajor = ApiVerMap.Get(0).ToInt();
 		int ApiMinor = ApiVerMap.Get(1).ToInt();
 		int ApiPatch = ApiVerMap.Get(2).ToInt();
-		if (ModMajor > ApiMajor){
+
+		if (ModMajor > ApiMajor) 
+		{
 			return 3;
 		} 
-		if (ModMajor < ApiMajor){
+
+		if (ModMajor < ApiMajor) 
+		{
 			return -3;
 		}
-		if (ModMinor > ApiMinor){
+
+		if (ModMinor > ApiMinor) 
+		{
 			return 2;
 		} 
-		if (ModMinor < ApiMinor){
+
+		if (ModMinor < ApiMinor) 
+		{
 			return -2;
 		} 
-		if (ModPatch > ApiPatch){
+
+		if (ModPatch > ApiPatch) 
+		{
 			return 1;
 		}
-		if (ModPatch < ApiPatch){
+
+		if (ModPatch < ApiPatch) 
+		{
 			return -1;
 		}
+
 		return 0;
 	}
-	
 }
