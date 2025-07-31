@@ -476,7 +476,7 @@ class UniversalApi extends Managed {
 			Math.Randomize(Math.QRandom()); //Randomize the Vanilla Randomization a bit more.
 			return;
 		}
-		Print("[UAPI] Failed to update the Q Random Numbers");
+		//Print("[UAPI] Failed to update the Q Random Numbers");
 	}
 	
 	protected void CBStatusCheck(int cid, int status, string oid, UApiStatus data){
